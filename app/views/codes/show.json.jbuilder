@@ -1,1 +1,1 @@
-json.extract! @code, :id, :name, :clue, :location, :secret, :created_at, :updated_at
+json.extract! @code, :id, :name, :clue, :location, :specific_location, :alum, :secret, :created_at, :updated_at

@@ -40,3 +40,5 @@ gem 'spring',        group: :development
 
 gem 'rqrcode-rails3'
 gem 'mini_magick'
+gem 'haml'
+gem 'haml-rails'

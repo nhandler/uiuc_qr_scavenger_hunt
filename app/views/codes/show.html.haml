@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @code.name
+%p
+  %b Clue:
+  = @code.clue
+%p
+  %b Location:
+  = @code.location
+%p
+  %b Specific location:
+  = @code.specific_location
+%p
+  %b Alum:
+  = @code.alum
+%p
+  %b Secret:
+  = @code.secret
+
+#qr
+  = image_tag("/codes/#{@code.id}.png")
+
+= link_to 'Edit', edit_code_path(@code)
+\|
+= link_to 'Back', codes_path

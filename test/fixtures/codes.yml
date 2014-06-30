@@ -4,10 +4,14 @@ one:
   name: MyString
   clue: MyString
   location: MyString
+  specific_location: MyString
+  alum: MyString
   secret: MyString
 
 two:
   name: MyString
   clue: MyString
   location: MyString
+  specific_location: MyString
+  alum: MyString
   secret: MyString

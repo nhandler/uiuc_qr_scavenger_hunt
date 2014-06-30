@@ -1,5 +1,6 @@
 class CodesController < ApplicationController
   before_action :set_code, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_secret, only: [:create]
 
   # GET /codes
   # GET /codes.json
@@ -31,7 +32,7 @@ class CodesController < ApplicationController
   # POST /codes
   # POST /codes.json
   def create
-    @code = Code.new(code_params)
+    @code = Code.new(code_params.except("new_secret"))
 
     respond_to do |format|
       if @code.save
@@ -47,8 +48,14 @@ class CodesController < ApplicationController
   # PATCH/PUT /codes/1
   # PATCH/PUT /codes/1.json
   def update
+    code_parameters = code_params
+    if code_parameters["new_secret"]
+      @code.new_secret
+      code_parameters = code_parameters.except("secret")
+    end
+    code_parameters = code_parameters.except("new_secret")
     respond_to do |format|
-      if @code.update(code_params)
+      if @code.update(code_parameters)
         format.html { redirect_to @code, notice: 'Code was successfully updated.' }
         format.json { render :show, status: :ok, location: @code }
       else
@@ -74,8 +81,12 @@ class CodesController < ApplicationController
       @code = Code.find(params[:id])
     end
 
+    def ensure_secret
+      @code.ensure_secret
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def code_params
-      params.require(:code).permit(:name, :clue, :location, :secret)
+      params.require(:code).permit(:name, :clue, :location, :specific_location, :alum, :secret, :new_secret)
     end
 end

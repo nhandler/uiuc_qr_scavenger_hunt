@@ -1,0 +1,30 @@
+= form_for @code do |f|
+  - if @code.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@code.errors.count, "error")} prohibited this code from being saved:"
+      %ul
+        - @code.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :clue
+    = f.text_field :clue
+  .field
+    = f.label :location
+    = f.text_field :location
+  .field
+    = f.label :specific_location
+    = f.text_field :specific_location
+  .field
+    = f.label :alum
+    = f.text_field :alum
+  .field
+    = f.label :secret
+    = f.text_field :secret, :readonly => true
+    = f.label :new_secret
+    = f.check_box :new_secret
+  .actions
+    = f.submit 'Save'

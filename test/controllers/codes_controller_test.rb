@@ -18,7 +18,7 @@ class CodesControllerTest < ActionController::TestCase
 
   test "should create code" do
     assert_difference('Code.count') do
-      post :create, code: { clue: @code.clue, location: @code.location, name: @code.name, secret: @code.secret }
+      post :create, code: { alum: @code.alum, clue: @code.clue, location: @code.location, name: @code.name, secret: @code.secret, specific_location: @code.specific_location }
     end
 
     assert_redirected_to code_path(assigns(:code))
@@ -35,7 +35,7 @@ class CodesControllerTest < ActionController::TestCase
   end
 
   test "should update code" do
-    patch :update, id: @code, code: { clue: @code.clue, location: @code.location, name: @code.name, secret: @code.secret }
+    patch :update, id: @code, code: { alum: @code.alum, clue: @code.clue, location: @code.location, name: @code.name, secret: @code.secret, specific_location: @code.specific_location }
     assert_redirected_to code_path(assigns(:code))
   end
 
