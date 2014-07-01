@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'codes#index'
   resources :codes
   get 'register_code' => 'codes#register_code'
   get 'register_code/:secret' => 'codes#proccess_code'
