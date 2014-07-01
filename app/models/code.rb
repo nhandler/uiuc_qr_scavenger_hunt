@@ -1,19 +1,22 @@
 class Code < ActiveRecord::Base
-  #after_initialize :ensure_secret, if: 'new_record?'
-  #before_filter :ensure_secret, :only => :create
   require 'securerandom'
+  validates_presence_of :name, :clue, :location, :specific_location, :alum, :secret, :on => :update
+  validates :secret, format: { with: /\A[0-9a-f]{60}\z/ }
 
-  def ensure_secret
-    self.secret ||= new_secret
+  def initialize(attributes = {})
+    puts "Initialize Called"
+    super
+    self.secret = new_secret
   end
 
   def new_secret
+    puts "New Secret Called"
     secret = SecureRandom.hex(30)
-    self.update(secret: secret)
+    #self.update(secret: secret)
     secret
   end
 
   def url
-    "http://localhost:3000/register_code?secret=#{secret}"
+    "http://localhost:3000/register_code/#{secret}"
   end
 end

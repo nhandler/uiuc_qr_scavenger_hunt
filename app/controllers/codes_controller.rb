@@ -1,6 +1,5 @@
 class CodesController < ApplicationController
   before_action :set_code, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_secret, only: [:create]
 
   # GET /codes
   # GET /codes.json
@@ -27,12 +26,13 @@ class CodesController < ApplicationController
 
   # GET /codes/1/edit
   def edit
+    puts "Code: #{@code.inspect}"
   end
 
   # POST /codes
   # POST /codes.json
   def create
-    @code = Code.new(code_params.except("new_secret"))
+    @code = Code.new(code_params)
 
     respond_to do |format|
       if @code.save
@@ -49,8 +49,10 @@ class CodesController < ApplicationController
   # PATCH/PUT /codes/1.json
   def update
     code_parameters = code_params
-    if code_parameters["new_secret"]
-      @code.new_secret
+    if code_parameters["new_secret"] == "1"
+      puts "New Secret Param Set"
+      @code.secret = @code.new_secret
+      @code.save
       code_parameters = code_parameters.except("secret")
     end
     code_parameters = code_parameters.except("new_secret")
@@ -75,14 +77,28 @@ class CodesController < ApplicationController
     end
   end
 
+  # GET /register_code
+  def register_code
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  # GET /register_code/11432423
+  def proccess_code
+    respond_to do |format|
+      if @code = Code.find_by(secret: params[:secret])
+        format.html { redirect_to @code, notice: 'Code was successfully registered.' }
+      else
+        format.html { redirect_to register_code_path, notice: "Invalid Code" }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_code
       @code = Code.find(params[:id])
-    end
-
-    def ensure_secret
-      @code.ensure_secret
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -12,6 +12,9 @@ location = "Siebel Center"
 specific_location = "Bottom of stairwell on SW side of building leading to sub-basement"
 alum = "Marc Andreessen / Mosaic Web Browser"
 c = Code.find_or_create_by(name: name, clue: clue, location: location, specific_location: specific_location, alum: alum)
+if c.errors.any?
+  puts c.errors.messages
+end
 
 name = "Altgeld Bell Tower"
 clue = "You might need to give up your lunch in order to hear...err find this clue"
@@ -19,3 +22,8 @@ location = "Altgeld"
 specific_location = "Bell Tower"
 alum = "Warren Arthur Ambrose / Father of modern geometry"
 c = Code.find_or_create_by(name: name, clue: clue, location: location, specific_location: specific_location, alum: alum)
+if c.errors.any?
+  puts c.errors.messages
+end
+
+puts "There are now #{Code.count} codes in the database."
