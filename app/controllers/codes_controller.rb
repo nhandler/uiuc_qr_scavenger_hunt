@@ -87,7 +87,9 @@ class CodesController < ApplicationController
   # GET /register_code/11432423
   def proccess_code
     respond_to do |format|
-      if @code = Code.find_by(secret: params[:secret])
+      if current_user && @code = Code.find_by(secret: params[:secret])
+        current_user.found_codes << @code
+        current_user.save
         format.html { redirect_to @code, notice: 'Code was successfully registered.' }
       else
         format.html { redirect_to register_code_path, notice: "Invalid Code" }

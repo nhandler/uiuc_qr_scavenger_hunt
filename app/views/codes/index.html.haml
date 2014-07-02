@@ -26,6 +26,62 @@
       %td= link_to 'Edit', edit_code_path(code)
       %td= link_to 'Destroy', code, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
+- if current_user
+  %h1 Available Codes
+  %table{:border => 1}
+    %tr
+      %th ID
+      %th Name
+      %th Clue
+      %th Location
+      %th Specific location
+      %th Alum
+      %th Secret
+      %th
+      %th
+      %th
+
+    - current_user.available_codes.each do |code|
+      %tr
+        %td= code.id
+        %td= code.name
+        %td= code.clue
+        %td= code.location
+        %td= code.specific_location
+        %td= code.alum
+        %td= code.secret
+        %td= link_to 'Show', code
+        %td= link_to 'Edit', edit_code_path(code)
+        %td= link_to 'Destroy', code, :method => :delete, :data => { :confirm => 'Are you sure?' }
+- if current_user
+  %h1 Found Codes
+  %table{:border => 1}
+    %tr
+      %th ID
+      %th Name
+      %th Clue
+      %th Location
+      %th Specific location
+      %th Alum
+      %th Secret
+      %th
+      %th
+      %th
+
+    - current_user.found_codes.each do |code|
+      %tr
+        %td= code.id
+        %td= code.name
+        %td= code.clue
+        %td= code.location
+        %td= code.specific_location
+        %td= code.alum
+        %td= code.secret
+        %td= link_to 'Show', code
+        %td= link_to 'Edit', edit_code_path(code)
+        %td= link_to 'Destroy', code, :method => :delete, :data => { :confirm => 'Are you sure?' }
 %br
 
 = link_to 'New Code', new_code_path
+\|
+= link_to 'Register Code', register_code_path
