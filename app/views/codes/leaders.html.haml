@@ -1,0 +1,15 @@
+%h1 Leader Board
+
+%table{:border => 1}
+  %tr
+    %th Name
+    %th Number Codes Found
+
+  - @leaders.each do |leader|
+    %tr
+      %td= leader.name
+      %td= leader.found_codes_count
+
+%br
+
+= link_to 'Back', codes_path

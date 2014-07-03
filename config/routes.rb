@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :codes
   get 'register_code' => 'codes#register_code'
   get 'register_code/:secret' => 'codes#proccess_code'
+  get 'leaders' => 'codes#leaders'
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
