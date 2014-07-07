@@ -1,0 +1,7 @@
+%h1 UIUC QR Scavenger Hunt
+
+.row
+  - @available_codes.each do |code|
+    .col-md-3
+      = link_to code, class: 'thumbnail' do
+        = image_tag "#{code.alum.downcase}.png", alt: code.alum

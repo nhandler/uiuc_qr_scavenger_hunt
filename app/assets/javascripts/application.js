@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require holder
+//= require bootstrap-sprockets
 //= require facebook
 //= require codes
