@@ -2,6 +2,24 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :found_codes, :join_table => "found_codes", :class_name => "Code"
   has_and_belongs_to_many :available_codes, :join_table => "available_codes", :class_name => "Code"
 
+  def initialize(attributes = {})
+    super
+    self.available_codes = get_available
+  end
+
+  def found(code)
+    self.found_codes.include?(code)
+  end
+
+  def register_found_code(code)
+    self.found_codes << code
+    self.available_codes = get_available
+  end
+
+  def get_available
+    (Code.all - self.found_codes).first(3)
+  end
+
   def self.leaders
     select("users.*, count(code_id) AS found_codes_count").
     joins(:found_codes).

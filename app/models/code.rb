@@ -7,15 +7,12 @@ class Code < ActiveRecord::Base
   has_and_belongs_to_many :available_to_users, :class_name => "User", :join_table => "found_codes"
 
   def initialize(attributes = {})
-    puts "Initialize Called"
     super
     self.secret = new_secret
   end
 
   def new_secret
-    puts "New Secret Called"
     secret = SecureRandom.hex(30)
-    #self.update(secret: secret)
     secret
   end
 

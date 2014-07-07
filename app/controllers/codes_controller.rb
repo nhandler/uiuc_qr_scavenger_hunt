@@ -80,20 +80,20 @@ class CodesController < ApplicationController
   # GET /register_code
   def register_code
     respond_to do |format|
-      format.html
-    end
-  end
-
-  # GET /register_code/11432423
-  def proccess_code
-    respond_to do |format|
-      if current_user && @code = Code.find_by(secret: params[:secret])
-        current_user.found_codes << @code
-        current_user.save
-        format.html { redirect_to @code, notice: 'Code was successfully registered.' }
-      else
-        format.html { redirect_to register_code_path, notice: "Invalid Code" }
+      if params && params[:code]
+        if current_user && @code = Code.find_by(secret: params[:code])
+          if not current_user.found(@code)
+            current_user.register_found_code(@code)
+            current_user.save
+            format.html { redirect_to @code, notice: 'Code was successfully registered.' }
+          else
+            format.html { redirect_to @code, notice: "You already found this code." }
+          end
+        else
+          format.html { redirect_to register_code_path, notice: "Invalid Code" }
+        end
       end
+      format.html
     end
   end
 

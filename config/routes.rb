@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'codes#index'
   resources :codes
   get 'register_code' => 'codes#register_code'
-  get 'register_code/:secret' => 'codes#proccess_code'
+  get 'register_code/:code' => 'codes#register_code'
   get 'leaders' => 'codes#leaders'
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
