@@ -7,13 +7,6 @@
     = csrf_meta_tags
 
   %body
-    #user-widget
-      - if current_user
-        Welcome
-        %strong
-          = current_user.name
-        !
-      - else
-        = link_to 'Sign in with Facebook', '/auth/facebook', id: 'sign_in'
+    = render 'home/navbar'
     .container-fluid
       = yield

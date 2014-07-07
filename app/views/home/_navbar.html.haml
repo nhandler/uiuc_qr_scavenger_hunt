@@ -1,0 +1,13 @@
+.nav.navbar.navbar-default.navbar-conduit{role: "navigation"}
+  .container-fluid
+    .navbar-header
+      = link_to "UIUC QR Scavenger Hunt", root_path, class: 'navbar-brand'
+    .navbar-right
+      .navbar-text
+        - if current_user
+          Welcome
+          %strong
+          = current_user.name
+          !
+        - else
+          = link_to 'Sign in with Facebook', '/auth/facebook'
