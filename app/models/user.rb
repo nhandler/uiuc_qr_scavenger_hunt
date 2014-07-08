@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
 
   def initialize(attributes = {})
     super
-    self.available_codes = get_available
   end
 
   def found(code)

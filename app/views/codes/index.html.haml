@@ -41,7 +41,7 @@
       %th
       %th
 
-    - current_user.available_codes.each do |code|
+    - current_user.get_available.each do |code|
       %tr
         %td= code.id
         %td= code.name

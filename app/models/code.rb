@@ -4,7 +4,6 @@ class Code < ActiveRecord::Base
   validates :secret, format: { with: /\A[0-9a-f]{60}\z/ }
 
   has_and_belongs_to_many :found_by_users, :class_name => "User", :join_table => "found_codes"
-  has_and_belongs_to_many :available_to_users, :class_name => "User", :join_table => "found_codes"
 
   def initialize(attributes = {})
     super
