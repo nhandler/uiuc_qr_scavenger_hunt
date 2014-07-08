@@ -16,6 +16,7 @@ gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 gem 'pg'
 gem 'rails_12factor', group: :production
+gem 'rmagick'
 gem 'rqrcode-rails3'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0',          group: :doc

@@ -115,6 +115,7 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    rmagick (2.13.2)
     rqrcode (0.4.2)
     rqrcode-rails3 (0.1.7)
       rqrcode (>= 0.4.2)
@@ -169,6 +170,7 @@ DEPENDENCIES
   pg
   rails (= 4.1.4)
   rails_12factor
+  rmagick
   rqrcode-rails3
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
