@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
 
   def register_found_code(code)
     self.found_codes << code
-    self.available_codes = get_available
   end
 
   def get_available

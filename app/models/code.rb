@@ -16,6 +16,6 @@ class Code < ActiveRecord::Base
   end
 
   def url
-    "http://localhost:3000/register_code/#{secret}"
+    "http://qr.nhandler.com/register_code/#{secret}"
   end
 end
